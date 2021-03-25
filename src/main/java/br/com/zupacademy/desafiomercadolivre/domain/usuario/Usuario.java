@@ -1,5 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.usuario;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 
@@ -24,7 +26,7 @@ public class Usuario {
 
     public Usuario(String login, String senha) {
         this.login = login;
-        this.senha = senha;
+        this.senha = new BCryptPasswordEncoder().encode(senha);
         this.criadoEm = OffsetDateTime.now();
     }
 
