@@ -1,6 +1,8 @@
 package br.com.zupacademy.desafiomercadolivre.domain.usuario;
 
+import br.com.zupacademy.desafiomercadolivre.errors.APIErrorHandler;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,11 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioResponseDTO> cadastra(@RequestBody @Valid UsuarioRequestDTO usuarioRequest) {
+    public ResponseEntity<?> cadastra(@RequestBody @Valid UsuarioRequestDTO usuarioRequest, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(new APIErrorHandler(result.getFieldErrors()));
+        }
+
         Usuario usuario = usuarioRequest.toModel();
 
         usuario = usuarioRepository.save(usuario);
