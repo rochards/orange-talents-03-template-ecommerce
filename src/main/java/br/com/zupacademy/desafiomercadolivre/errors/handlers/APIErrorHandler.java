@@ -1,4 +1,4 @@
-package br.com.zupacademy.desafiomercadolivre.errors;
+package br.com.zupacademy.desafiomercadolivre.errors.handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;

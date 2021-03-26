@@ -1,4 +1,4 @@
-package br.com.zupacademy.desafiomercadolivre.errors;
+package br.com.zupacademy.desafiomercadolivre.errors.handlers;
 
 public class ErrorField {
 

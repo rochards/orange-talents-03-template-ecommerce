@@ -1,6 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.domain.usuario;
 
-import br.com.zupacademy.desafiomercadolivre.errors.APIErrorHandler;
+import br.com.zupacademy.desafiomercadolivre.errors.handlers.APIErrorHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
