@@ -1,5 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.domain.usuario;
 
+import br.com.zupacademy.desafiomercadolivre.errors.validators.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class UsuarioRequestDTO {
 
     @NotBlank @Email
+    @UniqueValue(message = "esse e-mail já está cadastrado", domainClass = Usuario.class, fieldName = "login")
     private String login;
 
     @NotBlank @Length(min = 6)
