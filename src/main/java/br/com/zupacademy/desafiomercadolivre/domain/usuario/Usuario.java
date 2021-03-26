@@ -24,6 +24,10 @@ public class Usuario {
     public Usuario() {
     }
 
+    /**
+     * @param login deve ser um e-mail no formato adequado
+     * @param senha nao deve vir criptografada, pois esse passo eh feito dentro do construtor
+     * */
     public Usuario(String login, String senha) {
         this.login = login;
         this.senha = new BCryptPasswordEncoder().encode(senha);
