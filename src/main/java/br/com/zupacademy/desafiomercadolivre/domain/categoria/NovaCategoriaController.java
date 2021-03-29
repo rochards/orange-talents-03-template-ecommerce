@@ -29,7 +29,7 @@ public class NovaCategoriaController {
             return ResponseEntity.badRequest().body(new APIErrorHandler(result.getFieldErrors()));
         }
 
-        var categoria = categoriaRequest.toModel();
+        var categoria = categoriaRequest.toModel(em);
 
         em.persist(categoria);
 

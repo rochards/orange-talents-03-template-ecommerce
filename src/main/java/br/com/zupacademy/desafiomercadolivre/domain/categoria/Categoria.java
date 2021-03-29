@@ -11,11 +11,18 @@ public class Categoria {
     @Column(nullable = false, unique = true)
     private String nome;
 
+    @ManyToOne
+    private Categoria categoriaMae;
+
     @Deprecated
     public Categoria() {
     }
 
     public Categoria(String nome) {
         this.nome = nome;
+    }
+
+    public void setCategoriaMae(Categoria categoriaMae) {
+        this.categoriaMae = categoriaMae;
     }
 }
