@@ -1,5 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.domain.categoria;
 
+import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,6 +15,7 @@ public class NovaCategoriaRequestDTO {
     private String nome;
 
     @Positive
+    @ExistsValue(message = "não há categoria mãe para o id informado", domainClass = Categoria.class, fieldName = "id")
     private Integer categoriaMaeId;
 
     // o Jackson nao consegue desserializar parametro de construtor unico, por isso o uso de @JsonProperty
