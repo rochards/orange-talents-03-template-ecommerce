@@ -27,6 +27,10 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
+        if (value == null) {
+            // The Jakarta Bean Validation specification recommends to consider null values as being valid
+            return true;
+        }
 
         Query query = entityManager.createQuery(String.format("SELECT 1 FROM %s WHERE %s=:field", domainClass.getName(),
                 fieldName)).setParameter("field", value);
