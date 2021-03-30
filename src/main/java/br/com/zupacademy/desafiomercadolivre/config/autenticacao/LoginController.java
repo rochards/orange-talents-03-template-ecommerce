@@ -1,7 +1,11 @@
 package br.com.zupacademy.desafiomercadolivre.config.autenticacao;
 
 import br.com.zupacademy.desafiomercadolivre.errors.handlers.APIErrorHandler;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,12 +18,25 @@ import javax.validation.Valid;
 @RequestMapping("auth")
 public class LoginController {
 
+    private final AuthenticationManager authManager;
+
+    public LoginController(AuthenticationManager authManager) {
+        this.authManager = authManager;
+    }
+
     @PostMapping
     public ResponseEntity<?> autentica(@RequestBody @Valid LoginRequestDTO loginRequest, BindingResult result) {
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(new APIErrorHandler(result.getFieldErrors()));
         }
 
-        return ResponseEntity.ok().build();
+        var dadosLogin = loginRequest.toUsernamePasswordAuthenticationToken();
+        try {
+            Authentication authentication = authManager.authenticate(dadosLogin); // chama o ImplementsUserDetailsService
+            return ResponseEntity.ok().build();
+        } catch (AuthenticationException ex) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(String.format("{\"unauthorized\":\"%s\"}",
+                    ex.getMessage()));
+        }
     }
 }

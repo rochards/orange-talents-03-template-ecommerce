@@ -42,6 +42,10 @@ public class Usuario {
         return login;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     public OffsetDateTime getCriadoEm() {
         return criadoEm;
     }
