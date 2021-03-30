@@ -19,9 +19,11 @@ import javax.validation.Valid;
 public class LoginController {
 
     private final AuthenticationManager authManager;
+    private final JwtUtil jwtUtil;
 
-    public LoginController(AuthenticationManager authManager) {
+    public LoginController(AuthenticationManager authManager, JwtUtil jwtUtil) {
         this.authManager = authManager;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping
@@ -33,7 +35,10 @@ public class LoginController {
         var dadosLogin = loginRequest.toUsernamePasswordAuthenticationToken();
         try {
             Authentication authentication = authManager.authenticate(dadosLogin); // chama o ImplementsUserDetailsService
-            return ResponseEntity.ok().build();
+            String token = jwtUtil.geraToken(authentication);
+
+            return ResponseEntity.ok(new LoginResponseDTO("Bearer", token));
+
         } catch (AuthenticationException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(String.format("{\"unauthorized\":\"%s\"}",
                     ex.getMessage()));
