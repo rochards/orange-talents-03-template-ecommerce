@@ -1,6 +1,5 @@
 package br.com.zupacademy.desafiomercadolivre.config.security;
 
-import br.com.zupacademy.desafiomercadolivre.config.autenticacao.ImplementsUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

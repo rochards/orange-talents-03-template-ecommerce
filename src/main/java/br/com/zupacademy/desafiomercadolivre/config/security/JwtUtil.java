@@ -1,4 +1,4 @@
-package br.com.zupacademy.desafiomercadolivre.config.autenticacao;
+package br.com.zupacademy.desafiomercadolivre.config.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

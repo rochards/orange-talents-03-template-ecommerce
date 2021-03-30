@@ -1,5 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.config.autenticacao;
 
+import br.com.zupacademy.desafiomercadolivre.config.security.JwtUtil;
 import br.com.zupacademy.desafiomercadolivre.errors.handlers.APIErrorHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package br.com.zupacademy.desafiomercadolivre.config.autenticacao;
+package br.com.zupacademy.desafiomercadolivre.config.security;
 
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.UsuarioRepository;
 import org.springframework.security.core.userdetails.User;
