@@ -8,6 +8,9 @@ import static br.com.zupacademy.desafiomercadolivre.errors.validators.UniqueValu
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
 
+/**
+ * Objetos null sao considerados validos
+ * */
 @Documented
 @Target({ FIELD, METHOD, PARAMETER, ANNOTATION_TYPE })
 @Retention(RUNTIME)

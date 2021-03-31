@@ -11,6 +11,9 @@ import static br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValu
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Objetos null sao considerados validos
+ * */
 @Documented
 @Target({ FIELD, METHOD, PARAMETER, ANNOTATION_TYPE })
 @Retention(RUNTIME)
