@@ -11,7 +11,11 @@ public class ImagemProdutoRequestDTO {
     @NotNull @Size(min = 1)
     private List<MultipartFile> imagens;
 
-    public ImagemProdutoRequestDTO(@Size(min = 1) List<MultipartFile> imagens) {
+    public ImagemProdutoRequestDTO(@NotNull @Size(min = 1) List<MultipartFile> imagens) {
         this.imagens = imagens;
+    }
+
+    public List<MultipartFile> getImagens() {
+        return imagens;
     }
 }
