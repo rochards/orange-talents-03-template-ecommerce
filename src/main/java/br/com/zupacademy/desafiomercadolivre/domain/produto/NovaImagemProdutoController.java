@@ -41,8 +41,11 @@ public class NovaImagemProdutoController {
         * */
 
         List<String> links = uploaderFake.envia(imagemRequest.getImagens());
-        System.out.println(links);
+        var produto = em.find(Produto.class, id);
+        produto.setImagens(links);
 
-        return ResponseEntity.ok().build();
+        em.merge(produto); // faz o update do produto e add o link da imagem no banco por cascade
+
+        return ResponseEntity.ok(links);
     }
 }

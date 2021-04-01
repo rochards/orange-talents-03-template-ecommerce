@@ -42,6 +42,9 @@ public class Produto {
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private Set<CaracteristicaProduto> caracteristicas;
 
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private List<ImagemProduto> imagens;
+
     @Column(nullable = false)
     private OffsetDateTime cadastradoEm;
 
@@ -68,6 +71,12 @@ public class Produto {
         this.caracteristicas = caracteristicasDTO.stream()
                 .map(caracteristica -> caracteristica.toModel(this))
                 .collect(Collectors.toSet());
+    }
+
+    public void setImagens(List<String> links) {
+        this.imagens = links.stream()
+                .map(link -> new ImagemProduto(link, this))
+                .collect(Collectors.toList());
     }
 
     public Usuario getDono() {
