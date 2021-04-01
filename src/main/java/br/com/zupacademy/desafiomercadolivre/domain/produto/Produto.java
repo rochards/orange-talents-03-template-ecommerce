@@ -69,4 +69,8 @@ public class Produto {
                 .map(caracteristica -> caracteristica.toModel(this))
                 .collect(Collectors.toSet());
     }
+
+    public Usuario getDono() {
+        return dono;
+    }
 }
