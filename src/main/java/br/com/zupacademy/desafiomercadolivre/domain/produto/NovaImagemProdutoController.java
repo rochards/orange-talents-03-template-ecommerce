@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -44,9 +46,15 @@ public class NovaImagemProdutoController {
         * 3 - associar os links com seus devidos produtos.
         * */
         var produto = em.find(Produto.class, id);
+        if (produto == null) {
+            return ResponseEntity.badRequest().body(new APIErrorHandler(List.of(new FieldError("Produto", "id",
+                    String.format("produto de id '%d' não encontrado", id))))
+            );
+        }
         if (!produto.pertenceAUsuario(usuario)) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(String.format("o produto '%d' nao pertence ao " +
-                    "usuario '%d'", id, usuario.getId()));
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new APIErrorHandler(List.of(new FieldError(
+                    "Produto", "id", String.format("usuário não é dono de 'produto/%d'", id))))
+            );
         }
 
         List<String> links = uploaderFake.envia(imagemRequest.getImagens());
