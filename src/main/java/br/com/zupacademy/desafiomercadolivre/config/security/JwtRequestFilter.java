@@ -46,7 +46,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         Optional<Usuario> optUsuario = usuarioRepository.findByLogin(loginUsuario);
         if (optUsuario.isPresent()) {
             var usuario = optUsuario.get();
-            var usuarioAutenticado = new UsernamePasswordAuthenticationToken(usuario.getLogin(), usuario.getSenha(),
+            var usuarioAutenticado = new UsernamePasswordAuthenticationToken(usuario, usuario.getSenha(),
                     new ArrayList<>());
 
             SecurityContextHolder.getContext().setAuthentication(usuarioAutenticado);

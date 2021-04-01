@@ -1,6 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
+import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.Assert;
@@ -45,9 +46,9 @@ public class NovoProdutoRequestDTO {
         this.caracteristicas = caracteristicas;
     }
 
-    public Produto toModel(EntityManager em) {
+    public Produto toModel(EntityManager em, Usuario dono) {
         var categoria = buscaCategoria(em, categoriaId).get();
-        return new Produto(nome, valor, quantidade, descricao, categoria, caracteristicas);
+        return new Produto(nome, valor, quantidade, descricao, categoria, dono, caracteristicas);
     }
 
     private Optional<Categoria> buscaCategoria(EntityManager em, Integer id) {

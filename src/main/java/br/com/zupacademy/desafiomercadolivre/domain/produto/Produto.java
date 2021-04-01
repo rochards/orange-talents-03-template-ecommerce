@@ -1,6 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
+import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -31,6 +32,9 @@ public class Produto {
     @ManyToOne(optional = false)
     private Categoria categoria;
 
+    @ManyToOne(optional = false)
+    private Usuario dono;
+
     /* Eh necessario configurar o cascade para que as operacoes do EntityManager tbm reflitam na tabela da entidade
     CaracteristicaProduto. Sem isso, por exemplo, quando fosse salvar um produto, a lista de caracteristicas nao
     seria salva no banco.
@@ -46,12 +50,14 @@ public class Produto {
     }
 
     public Produto(String nome, BigDecimal valor, Integer quantidade, String descricao, Categoria categoria,
-                   List<CaracteristicaProdutoRequestDTO> caracteristicasDTO) {
+        Usuario dono, List<CaracteristicaProdutoRequestDTO> caracteristicasDTO) {
+
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
         this.descricao = descricao;
         this.categoria = categoria;
+        this.dono = dono;
         this.cadastradoEm = OffsetDateTime.now();
         setCaracteristicas(caracteristicasDTO);
 
