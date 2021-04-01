@@ -3,6 +3,7 @@ package br.com.zupacademy.desafiomercadolivre.domain.produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.desafiomercadolivre.errors.handlers.APIErrorHandler;
 import br.com.zupacademy.desafiomercadolivre.storage.Uploader;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -42,9 +43,13 @@ public class NovaImagemProdutoController {
         * 2 - recupear os links gerados acima das imagens;
         * 3 - associar os links com seus devidos produtos.
         * */
+        var produto = em.find(Produto.class, id);
+        if (!produto.pertenceAUsuario(usuario)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(String.format("o produto '%d' nao pertence ao " +
+                    "usuario '%d'", id, usuario.getId()));
+        }
 
         List<String> links = uploaderFake.envia(imagemRequest.getImagens());
-        var produto = em.find(Produto.class, id);
         produto.setImagens(links);
 
         em.merge(produto); // faz o update do produto e add o link da imagem no banco por cascade

@@ -79,6 +79,10 @@ public class Produto {
                 .collect(Collectors.toList());
     }
 
+    public boolean pertenceAUsuario(Usuario possivelDono) {
+        return this.dono.equals(possivelDono);
+    }
+
     public Usuario getDono() {
         return dono;
     }
