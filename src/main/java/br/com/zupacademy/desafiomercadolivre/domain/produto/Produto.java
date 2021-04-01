@@ -1,11 +1,13 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
@@ -34,7 +36,7 @@ public class Produto {
     seria salva no banco.
     */
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    private List<CaracteristicaProduto> caracteristicas;
+    private Set<CaracteristicaProduto> caracteristicas;
 
     @Column(nullable = false)
     private OffsetDateTime cadastradoEm;
@@ -50,13 +52,15 @@ public class Produto {
         this.quantidade = quantidade;
         this.descricao = descricao;
         this.categoria = categoria;
-        setCaracteristicas(caracteristicasDTO);
         this.cadastradoEm = OffsetDateTime.now();
+        setCaracteristicas(caracteristicasDTO);
+
+        Assert.isTrue(caracteristicas.size() >= 3, "o produto não deveria ter menos de 3 características");
     }
 
     private void setCaracteristicas(List<CaracteristicaProdutoRequestDTO> caracteristicasDTO) {
         this.caracteristicas = caracteristicasDTO.stream()
-                .map(caracteristica -> new CaracteristicaProduto(caracteristica.getNome(), caracteristica.getDescricao(), this))
-                .collect(Collectors.toList());
+                .map(caracteristica -> caracteristica.toModel(this))
+                .collect(Collectors.toSet());
     }
 }

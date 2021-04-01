@@ -1,6 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class CaracteristicaProduto {
@@ -25,5 +26,18 @@ public class CaracteristicaProduto {
         this.nome = nome;
         this.descricao = descricao;
         this.produto = produto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CaracteristicaProduto)) return false;
+        CaracteristicaProduto that = (CaracteristicaProduto) o;
+        return nome.equals(that.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome);
     }
 }

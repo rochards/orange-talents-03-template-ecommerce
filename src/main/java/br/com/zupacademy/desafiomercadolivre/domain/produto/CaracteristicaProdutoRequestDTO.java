@@ -17,6 +17,10 @@ public class CaracteristicaProdutoRequestDTO {
         this.descricao = descricao;
     }
 
+    public CaracteristicaProduto toModel(Produto produto) {
+        return new CaracteristicaProduto(nome, descricao, produto);
+    }
+
     public String getNome() {
         return nome;
     }
