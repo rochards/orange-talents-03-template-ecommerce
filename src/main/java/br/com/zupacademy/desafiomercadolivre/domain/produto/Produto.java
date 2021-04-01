@@ -17,7 +17,7 @@ public class Produto {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String nome;
 
     @Column(nullable = false, columnDefinition = "DECIMAL(10,2) UNSIGNED")

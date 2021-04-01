@@ -3,6 +3,7 @@ package br.com.zupacademy.desafiomercadolivre.domain.produto;
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
+import br.com.zupacademy.desafiomercadolivre.errors.validators.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.Assert;
 
@@ -15,6 +16,7 @@ import java.util.*;
 public class NovoProdutoRequestDTO {
 
     @NotBlank
+    @UniqueValue(message = "já há um produto cadastrado com esse nome", domainClass = Produto.class, fieldName = "nome")
     private String nome;
 
     @NotNull @Positive
