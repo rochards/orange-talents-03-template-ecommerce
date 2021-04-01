@@ -2,7 +2,6 @@ package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.Assert;
 
@@ -10,8 +9,7 @@ import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class NovoProdutoRequestDTO {
 
@@ -49,13 +47,11 @@ public class NovoProdutoRequestDTO {
 
     public Produto toModel(EntityManager em) {
         var categoria = buscaCategoria(em, categoriaId).get();
-
         return new Produto(nome, valor, quantidade, descricao, categoria, caracteristicas);
     }
 
     private Optional<Categoria> buscaCategoria(EntityManager em, Integer id) {
         Assert.notNull(id, "o id não deveria vir nulo");
-
         return Optional.ofNullable(em.find(Categoria.class, id));
     }
 
@@ -63,5 +59,19 @@ public class NovoProdutoRequestDTO {
         /* Foi preciso add um setter paras msgs de error. O Jackson ficava reclamando que nao conseguia acessar a
         lista. */
         return caracteristicas;
+    }
+
+    public List<String> getNomesCaracteristicasDuplicadas() {
+        List<String> nomesDuplicados = new ArrayList<>();
+        Set<String> nomesDuplicadosAux = new HashSet<>();
+
+        for (var caracteristica : caracteristicas) {
+            String nome = caracteristica.getNome();
+            if (!nomesDuplicadosAux.add(nome)) {
+                nomesDuplicados.add(nome);
+            }
+        }
+
+        return nomesDuplicados;
     }
 }

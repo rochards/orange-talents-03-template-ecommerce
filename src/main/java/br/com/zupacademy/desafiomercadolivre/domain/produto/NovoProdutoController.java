@@ -1,12 +1,11 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.errors.handlers.APIErrorHandler;
+import br.com.zupacademy.desafiomercadolivre.errors.validators.CaracteristicaProdutoDuplicadaValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -20,6 +19,11 @@ public class NovoProdutoController {
 
     public NovoProdutoController(EntityManager em) {
         this.em = em;
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(new CaracteristicaProdutoDuplicadaValidator());
     }
 
     @PostMapping
