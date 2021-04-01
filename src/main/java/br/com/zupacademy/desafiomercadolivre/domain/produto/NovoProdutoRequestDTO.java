@@ -2,10 +2,12 @@ package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +18,7 @@ public class NovoProdutoRequestDTO {
     @NotBlank
     private String nome;
 
-    @Positive
+    @NotNull @Positive
     private BigDecimal valor;
 
     @Min(0) // nao posso usar @Positive por nao aceitar 0
@@ -30,7 +32,7 @@ public class NovoProdutoRequestDTO {
             fieldName = "id")
     private Integer categoriaId;
 
-    @NotNull @Size(min = 3)
+    @NotNull @Size(min = 3) @Valid
     private List<CaracteristicaProdutoRequestDTO> caracteristicas;
 
     public NovoProdutoRequestDTO(@NotBlank String nome, @Positive BigDecimal valor, @Min(0) Integer quantidade,
@@ -55,5 +57,11 @@ public class NovoProdutoRequestDTO {
         Assert.notNull(id, "o id não deveria vir nulo");
 
         return Optional.ofNullable(em.find(Categoria.class, id));
+    }
+
+    public List<CaracteristicaProdutoRequestDTO> getCaracteristicas() {
+        /* Foi preciso add um setter paras msgs de error. O Jackson ficava reclamando que nao conseguia acessar a
+        lista. */
+        return caracteristicas;
     }
 }
