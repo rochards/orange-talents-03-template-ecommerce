@@ -25,7 +25,7 @@ public class NovaOpiniaoRequestDTO {
         this.descricao = descricao;
     }
 
-    public Opiniao toModel(Usuario usuario, Produto produto) {
-        return new Opiniao(nota, titulo, descricao, usuario, produto);
+    public Opiniao toModel(Usuario consumidor, Produto produto) {
+        return new Opiniao(nota, titulo, descricao, consumidor, produto);
     }
 }

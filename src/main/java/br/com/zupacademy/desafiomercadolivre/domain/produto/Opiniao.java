@@ -20,7 +20,7 @@ public class Opiniao {
     private String descricao;
 
     @ManyToOne(optional = false)
-    private Usuario usuario;
+    private Usuario consumidor;
 
     @ManyToOne(optional = false)
     private Produto produto;
@@ -29,11 +29,11 @@ public class Opiniao {
     public Opiniao() {
     }
 
-    public Opiniao(Integer nota, String titulo, String descricao, Usuario usuario, Produto produto) {
+    public Opiniao(Integer nota, String titulo, String descricao, Usuario consumidor, Produto produto) {
         this.nota = nota;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.usuario = usuario;
+        this.consumidor = consumidor;
         this.produto = produto;
     }
 }

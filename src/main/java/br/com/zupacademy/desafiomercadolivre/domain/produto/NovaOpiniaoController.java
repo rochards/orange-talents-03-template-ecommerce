@@ -26,7 +26,7 @@ public class NovaOpiniaoController {
     @Transactional
     @PostMapping("{id}/opinioes")
     public ResponseEntity<?> adiciona(@PathVariable Integer id, @RequestBody @Valid NovaOpiniaoRequestDTO opiniaoRequest,
-        BindingResult result, @AuthenticationPrincipal Usuario usuario) {
+        BindingResult result, @AuthenticationPrincipal Usuario consumidor) {
 
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(new APIErrorHandler(result.getFieldErrors()));
@@ -39,7 +39,7 @@ public class NovaOpiniaoController {
             );
         }
 
-        var opiniao = opiniaoRequest.toModel(usuario, produto);
+        var opiniao = opiniaoRequest.toModel(consumidor, produto);
 
         em.persist(opiniao);
 
