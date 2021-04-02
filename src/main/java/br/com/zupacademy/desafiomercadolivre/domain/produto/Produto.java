@@ -86,4 +86,8 @@ public class Produto {
     public Usuario getDono() {
         return dono;
     }
+
+    public String getNome() {
+        return nome;
+    }
 }
