@@ -2,6 +2,7 @@ package br.com.zupacademy.desafiomercadolivre.domain.produto.pergunta;
 
 import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
+import br.com.zupacademy.desafiomercadolivre.email.EmailSender;
 import br.com.zupacademy.desafiomercadolivre.errors.handlers.APIErrorHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,9 +20,11 @@ import java.util.List;
 public class NovaPerguntaController {
 
     private final EntityManager em;
+    private final EmailSender emailSender;
 
-    public NovaPerguntaController(EntityManager em) {
+    public NovaPerguntaController(EntityManager em, EmailSender emailSender) {
         this.em = em;
+        this.emailSender = emailSender;
     }
 
     @Transactional
@@ -44,7 +47,8 @@ public class NovaPerguntaController {
 
         em.persist(pergunta);
 
-        System.out.println(pergunta);
+        emailSender.envia(pergunta, produto.getDono());
+
         return ResponseEntity.ok().build();
     }
 }

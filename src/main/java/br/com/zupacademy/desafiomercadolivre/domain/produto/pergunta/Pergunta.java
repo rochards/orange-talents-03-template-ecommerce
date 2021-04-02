@@ -35,13 +35,19 @@ public class Pergunta {
         this.criadaEm = OffsetDateTime.now();
     }
 
-    @Override
-    public String toString() {
-        return "Pergunta{" +
-                "titulo='" + titulo + '\'' +
-                ", usuario=" + usuario.getLogin() +
-                ", produto=" + produto.getNome() +
-                ", criadaEm=" + criadaEm +
-                '}';
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public OffsetDateTime getCriadaEm() {
+        return criadaEm;
     }
 }
