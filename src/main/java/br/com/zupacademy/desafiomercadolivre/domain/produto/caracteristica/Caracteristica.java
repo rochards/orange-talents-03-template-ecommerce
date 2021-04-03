@@ -5,7 +5,7 @@ import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "caracteristica_produto")
 public class Caracteristica {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

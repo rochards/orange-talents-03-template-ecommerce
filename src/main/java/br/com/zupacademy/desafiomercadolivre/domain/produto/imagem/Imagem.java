@@ -4,7 +4,7 @@ import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "imagem_produto")
 public class Imagem {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
