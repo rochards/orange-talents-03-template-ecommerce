@@ -1,8 +1,8 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.CaracteristicaProduto;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.CaracteristicaProdutoRequestDTO;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.Caracteristica;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.NovaCaracteristicaRequestDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.ImagemProduto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import org.springframework.util.Assert;
@@ -43,7 +43,7 @@ public class Produto {
     seria salva no banco.
     */
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    private Set<CaracteristicaProduto> caracteristicas;
+    private Set<Caracteristica> caracteristicas;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
     private List<ImagemProduto> imagens;
@@ -56,7 +56,7 @@ public class Produto {
     }
 
     public Produto(String nome, BigDecimal valor, Integer quantidade, String descricao, Categoria categoria,
-        Usuario dono, List<CaracteristicaProdutoRequestDTO> caracteristicasDTO) {
+        Usuario dono, List<NovaCaracteristicaRequestDTO> caracteristicasDTO) {
 
         this.nome = nome;
         this.valor = valor;
@@ -70,7 +70,7 @@ public class Produto {
         Assert.isTrue(caracteristicas.size() >= 3, "o produto não deveria ter menos de 3 características");
     }
 
-    private void setCaracteristicas(List<CaracteristicaProdutoRequestDTO> caracteristicasDTO) {
+    private void setCaracteristicas(List<NovaCaracteristicaRequestDTO> caracteristicasDTO) {
         this.caracteristicas = caracteristicasDTO.stream()
                 .map(caracteristica -> caracteristica.toModel(this))
                 .collect(Collectors.toSet());

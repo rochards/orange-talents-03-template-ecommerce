@@ -1,7 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.CaracteristicaProdutoRequestDTO;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.NovaCaracteristicaRequestDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.UniqueValue;
@@ -35,11 +35,11 @@ public class NovoProdutoRequestDTO {
     private Integer categoriaId;
 
     @NotNull @Size(min = 3) @Valid
-    private List<CaracteristicaProdutoRequestDTO> caracteristicas;
+    private List<NovaCaracteristicaRequestDTO> caracteristicas;
 
     public NovoProdutoRequestDTO(@NotBlank String nome, @Positive BigDecimal valor, @Min(0) Integer quantidade,
         @NotBlank @Length(max = 1000) String descricao, @NotNull Integer categoriaId,
-        @NotNull @Size(min = 3) List<CaracteristicaProdutoRequestDTO> caracteristicas) {
+        @NotNull @Size(min = 3) List<NovaCaracteristicaRequestDTO> caracteristicas) {
 
         this.nome = nome;
         this.valor = valor;
@@ -59,7 +59,7 @@ public class NovoProdutoRequestDTO {
         return Optional.ofNullable(em.find(Categoria.class, id));
     }
 
-    public List<CaracteristicaProdutoRequestDTO> getCaracteristicas() {
+    public List<NovaCaracteristicaRequestDTO> getCaracteristicas() {
         /* Foi preciso add um setter paras msgs de error. O Jackson ficava reclamando que nao conseguia acessar a
         lista. */
         return caracteristicas;

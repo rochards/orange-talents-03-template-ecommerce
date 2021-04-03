@@ -1,6 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
-import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.CaracteristicaProdutoRequestDTO;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.NovaCaracteristicaRequestDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -18,7 +18,7 @@ class NovoProdutoRequestDTOTest {
     @MethodSource("geradorDeCaracteristicas")
     @DisplayName("cria produto com diversas características, duplicadas ou nao")
     void testeGetNomesCaracteristicasDuplicadas(int duplicadosEsperados,
-        List<CaracteristicaProdutoRequestDTO> caracteristicasDTO) {
+        List<NovaCaracteristicaRequestDTO> caracteristicasDTO) {
 
         var produtoRequest = new NovoProdutoRequestDTO("nome", new BigDecimal("79.50"), 10, "descricao", 7,
                 caracteristicasDTO);
@@ -29,10 +29,10 @@ class NovoProdutoRequestDTOTest {
     static Stream<Arguments> geradorDeCaracteristicas() {
         return Stream.of(
                 Arguments.of(0, List.of()), // 0, nao entrando no loop
-                Arguments.of(0, List.of(new CaracteristicaProdutoRequestDTO("nome1", "descricao"),
-                        new CaracteristicaProdutoRequestDTO("nome2", "descricao"))), // 0, entrando no loop com duas caracteristicas nao duplicas
-                Arguments.of(1, List.of(new CaracteristicaProdutoRequestDTO("nome1", "descricao"),
-                        new CaracteristicaProdutoRequestDTO("nome1", "descricao"))) // 1, entrando no loop com caracteristicas duplicadas
+                Arguments.of(0, List.of(new NovaCaracteristicaRequestDTO("nome1", "descricao"),
+                        new NovaCaracteristicaRequestDTO("nome2", "descricao"))), // 0, entrando no loop com duas caracteristicas nao duplicas
+                Arguments.of(1, List.of(new NovaCaracteristicaRequestDTO("nome1", "descricao"),
+                        new NovaCaracteristicaRequestDTO("nome1", "descricao"))) // 1, entrando no loop com caracteristicas duplicadas
         );
     }
 }

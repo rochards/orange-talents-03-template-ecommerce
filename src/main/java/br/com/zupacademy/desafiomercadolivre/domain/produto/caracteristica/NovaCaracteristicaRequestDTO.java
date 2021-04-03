@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 
-public class CaracteristicaProdutoRequestDTO {
+public class NovaCaracteristicaRequestDTO {
 
     @NotBlank
     private String nome;
@@ -13,13 +13,13 @@ public class CaracteristicaProdutoRequestDTO {
     @NotBlank @Length(max = 1000)
     private String descricao;
 
-    public CaracteristicaProdutoRequestDTO(@NotBlank String nome, @NotBlank @Length(max = 1000) String descricao) {
+    public NovaCaracteristicaRequestDTO(@NotBlank String nome, @NotBlank @Length(max = 1000) String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    public CaracteristicaProduto toModel(Produto produto) {
-        return new CaracteristicaProduto(nome, descricao, produto);
+    public Caracteristica toModel(Produto produto) {
+        return new Caracteristica(nome, descricao, produto);
     }
 
     public String getNome() {

@@ -1,7 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.CaracteristicaProdutoRequestDTO;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.NovaCaracteristicaRequestDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -16,10 +16,10 @@ class ProdutoTest {
     @DisplayName("um produto precisa de no mínimo 3 características")
     void teste1() {
 
-        List<CaracteristicaProdutoRequestDTO> caracteristicasDTO = List.of(
-                new CaracteristicaProdutoRequestDTO("nome1", "descricao"),
-                new CaracteristicaProdutoRequestDTO("nome2", "descricao"),
-                new CaracteristicaProdutoRequestDTO("nome3", "descricao"));
+        List<NovaCaracteristicaRequestDTO> caracteristicasDTO = List.of(
+                new NovaCaracteristicaRequestDTO("nome1", "descricao"),
+                new NovaCaracteristicaRequestDTO("nome2", "descricao"),
+                new NovaCaracteristicaRequestDTO("nome3", "descricao"));
 
         var categoria = new Categoria("categoria");
         var dono = new Usuario("teste@email.com.br", "123456");
@@ -31,9 +31,9 @@ class ProdutoTest {
     @DisplayName("um produto não deveria ser criado com menos de 3 características")
     void teste2() {
 
-        List<CaracteristicaProdutoRequestDTO> caracteristicasDTO = List.of(
-                new CaracteristicaProdutoRequestDTO("nome1", "descricao"),
-                new CaracteristicaProdutoRequestDTO("nome2", "descricao"));
+        List<NovaCaracteristicaRequestDTO> caracteristicasDTO = List.of(
+                new NovaCaracteristicaRequestDTO("nome1", "descricao"),
+                new NovaCaracteristicaRequestDTO("nome2", "descricao"));
 
         var categoria = new Categoria("categoria");
         var dono = new Usuario("teste@email.com.br", "123456");
