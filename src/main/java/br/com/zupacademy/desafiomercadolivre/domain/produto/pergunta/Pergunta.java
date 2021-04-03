@@ -16,7 +16,7 @@ public class Pergunta {
     private String titulo;
 
     @ManyToOne(optional = false)
-    private Usuario usuario;
+    private Usuario interessado;
 
     @ManyToOne(optional = false)
     private Produto produto;
@@ -28,9 +28,9 @@ public class Pergunta {
     public Pergunta() {
     }
 
-    public Pergunta(String titulo, Usuario usuario, Produto produto) {
+    public Pergunta(String titulo, Usuario interessado, Produto produto) {
         this.titulo = titulo;
-        this.usuario = usuario;
+        this.interessado = interessado;
         this.produto = produto;
         this.criadaEm = OffsetDateTime.now();
     }
@@ -39,8 +39,8 @@ public class Pergunta {
         return titulo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getInteressado() {
+        return interessado;
     }
 
     public Produto getProduto() {

@@ -30,7 +30,7 @@ public class NovaPerguntaController {
     @Transactional
     @PostMapping("{id}/perguntas")
     public ResponseEntity<?> adiciona(@PathVariable Integer id, @RequestBody @Valid NovaPerguntaRequestDTO perguntaRequest,
-        BindingResult result, @AuthenticationPrincipal Usuario usuario) {
+        BindingResult result, @AuthenticationPrincipal Usuario interessado) {
 
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(new APIErrorHandler(result.getFieldErrors()));
@@ -43,7 +43,7 @@ public class NovaPerguntaController {
             );
         }
 
-        var pergunta = perguntaRequest.toModel(usuario, produto);
+        var pergunta = perguntaRequest.toModel(interessado, produto);
 
         em.persist(pergunta);
 

@@ -10,14 +10,12 @@ public class NovaPerguntaRequestDTO {
 
     @NotBlank
     private String titulo;
-    private Usuario usuario;
-    private Produto produto;
 
     public NovaPerguntaRequestDTO(@NotBlank @JsonProperty("titulo") String titulo) {
         this.titulo = titulo;
     }
 
-    public Pergunta toModel(Usuario usuario, Produto produto) {
-        return new Pergunta(titulo, usuario, produto);
+    public Pergunta toModel(Usuario interessado, Produto produto) {
+        return new Pergunta(titulo, interessado, produto);
     }
 }
