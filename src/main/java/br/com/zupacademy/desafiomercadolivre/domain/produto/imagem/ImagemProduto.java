@@ -1,4 +1,6 @@
-package br.com.zupacademy.desafiomercadolivre.domain.produto;
+package br.com.zupacademy.desafiomercadolivre.domain.produto.imagem;
+
+import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 
 import javax.persistence.*;
 

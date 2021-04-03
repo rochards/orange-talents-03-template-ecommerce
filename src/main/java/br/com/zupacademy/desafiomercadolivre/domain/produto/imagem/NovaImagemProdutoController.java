@@ -1,5 +1,6 @@
-package br.com.zupacademy.desafiomercadolivre.domain.produto;
+package br.com.zupacademy.desafiomercadolivre.domain.produto.imagem;
 
+import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.desafiomercadolivre.errors.handlers.APIErrorHandler;
 import br.com.zupacademy.desafiomercadolivre.storage.Uploader;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController

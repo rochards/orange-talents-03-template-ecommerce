@@ -1,6 +1,9 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.CaracteristicaProduto;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.CaracteristicaProdutoRequestDTO;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.ImagemProduto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import org.springframework.util.Assert;
 

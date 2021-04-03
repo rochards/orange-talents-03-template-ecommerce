@@ -1,4 +1,6 @@
-package br.com.zupacademy.desafiomercadolivre.domain.produto;
+package br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica;
+
+import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 
 import javax.persistence.*;
 import java.util.Objects;

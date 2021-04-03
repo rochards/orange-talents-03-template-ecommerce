@@ -1,5 +1,6 @@
-package br.com.zupacademy.desafiomercadolivre.domain.produto;
+package br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica;
 
+import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
