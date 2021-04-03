@@ -93,4 +93,16 @@ public class Produto {
     public String getNome() {
         return nome;
     }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
 }
