@@ -6,12 +6,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-public class ImagemProdutoRequestDTO {
+public class NovaImagemRequestDTO {
 
     @NotNull @Size(min = 1)
     private List<MultipartFile> imagens;
 
-    public ImagemProdutoRequestDTO(@NotNull @Size(min = 1) List<MultipartFile> imagens) {
+    public NovaImagemRequestDTO(@NotNull @Size(min = 1) List<MultipartFile> imagens) {
         this.imagens = imagens;
     }
 

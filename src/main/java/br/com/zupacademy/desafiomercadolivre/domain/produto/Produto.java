@@ -3,7 +3,7 @@ package br.com.zupacademy.desafiomercadolivre.domain.produto;
 import br.com.zupacademy.desafiomercadolivre.domain.categoria.Categoria;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.Caracteristica;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.NovaCaracteristicaRequestDTO;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.ImagemProduto;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.Imagem;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import org.springframework.util.Assert;
 
@@ -46,7 +46,7 @@ public class Produto {
     private Set<Caracteristica> caracteristicas;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
-    private List<ImagemProduto> imagens;
+    private List<Imagem> imagens;
 
     @Column(nullable = false)
     private OffsetDateTime cadastradoEm;
@@ -78,7 +78,7 @@ public class Produto {
 
     public void setImagens(List<String> links) {
         this.imagens = links.stream()
-                .map(link -> new ImagemProduto(link, this))
+                .map(link -> new Imagem(link, this))
                 .collect(Collectors.toList());
     }
 

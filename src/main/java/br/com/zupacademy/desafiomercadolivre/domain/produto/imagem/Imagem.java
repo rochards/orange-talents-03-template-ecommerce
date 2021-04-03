@@ -5,7 +5,7 @@ import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import javax.persistence.*;
 
 @Entity
-public class ImagemProduto {
+public class Imagem {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,10 +17,10 @@ public class ImagemProduto {
     private Produto produto;
 
     @Deprecated
-    public ImagemProduto() {
+    public Imagem() {
     }
 
-    public ImagemProduto(String link, Produto produto) {
+    public Imagem(String link, Produto produto) {
         this.link = link;
         this.produto = produto;
     }

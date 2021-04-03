@@ -21,19 +21,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("produtos")
-public class NovaImagemProdutoController {
+public class NovaImagemController {
 
     private final EntityManager em;
     private final Uploader uploaderFake;
 
-    public NovaImagemProdutoController(EntityManager em, Uploader uploaderFake) {
+    public NovaImagemController(EntityManager em, Uploader uploaderFake) {
         this.em = em;
         this.uploaderFake = uploaderFake;
     }
 
     @Transactional
     @PostMapping("{id}/imagens")
-    public ResponseEntity<?> adiciona(@PathVariable Integer id, @Valid ImagemProdutoRequestDTO imagemRequest,
+    public ResponseEntity<?> adiciona(@PathVariable Integer id, @Valid NovaImagemRequestDTO imagemRequest,
         BindingResult result, @AuthenticationPrincipal Usuario usuario) {
 
         if (result.hasErrors()) {
