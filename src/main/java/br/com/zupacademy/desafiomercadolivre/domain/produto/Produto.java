@@ -105,4 +105,8 @@ public class Produto {
     public String getDescricao() {
         return descricao;
     }
+
+    public List<Imagem> getImagens() {
+        return imagens;
+    }
 }
