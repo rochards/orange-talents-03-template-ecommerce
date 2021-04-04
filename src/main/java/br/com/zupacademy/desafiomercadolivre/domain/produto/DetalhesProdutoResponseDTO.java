@@ -1,9 +1,12 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.Caracteristica;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.DetalheCaracteristicaDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.DetalheImagemDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.Imagem;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DetalhesProdutoResponseDTO {
@@ -12,6 +15,7 @@ public class DetalhesProdutoResponseDTO {
     private double preco;
     private int quantidade;
     private String descricao;
+    private Set<DetalheCaracteristicaDTO> caracteristicas;
     private List<DetalheImagemDTO> imagens;
 
     public DetalhesProdutoResponseDTO(Produto produto) {
@@ -19,7 +23,14 @@ public class DetalhesProdutoResponseDTO {
         this.preco = produto.getValor().doubleValue();
         this.quantidade = produto.getQuantidade();
         this.descricao = produto.getDescricao();
+        setCaracteristicas(produto.getCaracteristicas());
         setImagens(produto.getImagens());
+    }
+
+    private void setCaracteristicas(Set<Caracteristica> caracteristicas) {
+        this.caracteristicas = caracteristicas.stream()
+                .map(DetalheCaracteristicaDTO::new)
+                .collect(Collectors.toSet());
     }
 
     private void setImagens(List<Imagem> imagens) {
@@ -42,6 +53,10 @@ public class DetalhesProdutoResponseDTO {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public Set<DetalheCaracteristicaDTO> getCaracteristicas() {
+        return caracteristicas;
     }
 
     public List<DetalheImagemDTO> getImagens() {

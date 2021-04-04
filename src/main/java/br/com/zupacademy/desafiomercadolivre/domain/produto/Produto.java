@@ -106,6 +106,10 @@ public class Produto {
         return descricao;
     }
 
+    public Set<Caracteristica> getCaracteristicas() {
+        return caracteristicas;
+    }
+
     public List<Imagem> getImagens() {
         return imagens;
     }
