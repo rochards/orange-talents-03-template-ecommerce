@@ -17,6 +17,8 @@ public class DetalhesProdutoResponseDTO {
     private double preco;
     private int quantidade;
     private String descricao;
+    private double notaMedia;
+    private int totalDeNotas;
     private Set<DetalheCaracteristicaDTO> caracteristicas;
     private List<DetalheImagemDTO> imagens;
     private List<DetalheOpiniaoDTO> opinioes;
@@ -29,6 +31,8 @@ public class DetalhesProdutoResponseDTO {
         setCaracteristicas(produto.getCaracteristicas());
         setImagens(produto.getImagens());
         setOpinioes(produto.getOpinioes());
+        this.notaMedia = DetalheOpiniaoDTO.calculaNotaMedia(opinioes);
+        this.totalDeNotas = opinioes.size();
     }
 
     private void setCaracteristicas(Set<Caracteristica> caracteristicas) {
@@ -63,6 +67,14 @@ public class DetalhesProdutoResponseDTO {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public double getNotaMedia() {
+        return notaMedia;
+    }
+
+    public int getTotalDeNotas() {
+        return totalDeNotas;
     }
 
     public Set<DetalheCaracteristicaDTO> getCaracteristicas() {

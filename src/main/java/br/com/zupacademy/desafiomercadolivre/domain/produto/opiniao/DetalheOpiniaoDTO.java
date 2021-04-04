@@ -1,5 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto.opiniao;
 
+import java.util.List;
+
 public class DetalheOpiniaoDTO {
 
     private int nota;
@@ -10,6 +12,14 @@ public class DetalheOpiniaoDTO {
         this.nota = opiniao.getNota();
         this.titulo = opiniao.getTitulo();
         this.descricao = opiniao.getDescricao();
+    }
+
+    public static double calculaNotaMedia(List<DetalheOpiniaoDTO> opinioes) {
+        var optMedia = opinioes.stream()
+                .mapToInt(DetalheOpiniaoDTO::getNota)
+                .average();
+
+        return optMedia.orElse(0);
     }
 
     public int getNota() {
