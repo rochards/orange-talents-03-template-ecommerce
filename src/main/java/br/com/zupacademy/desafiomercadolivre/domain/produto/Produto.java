@@ -5,6 +5,7 @@ import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.Carac
 import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.NovaCaracteristicaRequestDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.Imagem;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.opiniao.Opiniao;
+import br.com.zupacademy.desafiomercadolivre.domain.produto.pergunta.Pergunta;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import org.springframework.util.Assert;
 
@@ -51,6 +52,9 @@ public class Produto {
 
     @OneToMany(mappedBy = "produto")
     private List<Opiniao> opinioes;
+
+    @OneToMany(mappedBy = "produto")
+    private List<Pergunta> perguntas;
 
     @Column(nullable = false)
     private OffsetDateTime cadastradoEm;
@@ -120,5 +124,9 @@ public class Produto {
 
     public List<Opiniao> getOpinioes() {
         return opinioes;
+    }
+
+    public List<Pergunta> getPerguntas() {
+        return perguntas;
     }
 }
