@@ -17,6 +17,7 @@
 - Cadastro de imagens do produto;
 - Adição de opinião ao produto;
 - Adição de pergunta sobre o produto;
+- Consulta de produtos;
 
 ### Operações
 - POST /usuarios;
@@ -26,3 +27,4 @@
 - POST /produtos/{id}/imagens
 - POST /produtos/{id}/opinioes
 - POST /produtos/{id}/perguntas
+- GET /produtos/{id}
