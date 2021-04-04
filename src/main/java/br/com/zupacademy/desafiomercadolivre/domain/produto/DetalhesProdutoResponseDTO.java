@@ -1,13 +1,9 @@
 package br.com.zupacademy.desafiomercadolivre.domain.produto;
 
-import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.Caracteristica;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.caracteristica.DetalheCaracteristicaDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.DetalheImagemDTO;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.imagem.Imagem;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.opiniao.DetalheOpiniaoDTO;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.opiniao.Opiniao;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.pergunta.DetalhePerguntaDTO;
-import br.com.zupacademy.desafiomercadolivre.domain.produto.pergunta.Pergunta;
 
 import java.util.List;
 import java.util.Set;
@@ -31,34 +27,34 @@ public class DetalhesProdutoResponseDTO {
         this.preco = produto.getValor().doubleValue();
         this.quantidade = produto.getQuantidade();
         this.descricao = produto.getDescricao();
-        setCaracteristicas(produto.getCaracteristicas());
-        setImagens(produto.getImagens());
-        setOpinioes(produto.getOpinioes());
+        setCaracteristicas(produto);
+        setImagens(produto);
+        setOpinioes(produto);
         this.notaMedia = DetalheOpiniaoDTO.calculaNotaMedia(opinioes);
         this.totalDeNotas = opinioes.size();
-        setPerguntas(produto.getPerguntas());
+        setPerguntas(produto);
     }
 
-    private void setCaracteristicas(Set<Caracteristica> caracteristicas) {
-        this.caracteristicas = caracteristicas.stream()
+    private void setCaracteristicas(Produto produto) {
+        this.caracteristicas = produto.getCaracteristicas().stream()
                 .map(DetalheCaracteristicaDTO::new)
                 .collect(Collectors.toSet());
     }
 
-    private void setImagens(List<Imagem> imagens) {
-        this.imagens = imagens.stream()
+    private void setImagens(Produto produto) {
+        this.imagens = produto.getImagens().stream()
                 .map(DetalheImagemDTO::new)
                 .collect(Collectors.toList());
     }
 
-    private void setOpinioes(List<Opiniao> opinioes) {
-        this.opinioes = opinioes.stream()
+    private void setOpinioes(Produto produto) {
+        this.opinioes = produto.getOpinioes().stream()
                 .map(DetalheOpiniaoDTO::new)
                 .collect(Collectors.toList());
     }
 
-    private void setPerguntas(List<Pergunta> perguntas) {
-        this.perguntas = perguntas.stream()
+    private void setPerguntas(Produto produto) {
+        this.perguntas = produto.getPerguntas().stream()
                 .map(DetalhePerguntaDTO::new)
                 .collect(Collectors.toList());
     }
