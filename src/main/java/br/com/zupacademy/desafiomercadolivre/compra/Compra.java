@@ -1,5 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.compra;
 
+import br.com.zupacademy.desafiomercadolivre.compra.status.Status;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 
@@ -19,6 +20,10 @@ public class Compra {
     private Integer quantidade;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @Column(nullable = false)
     private String formaPagamento;
 
     @ManyToOne(optional = false)
@@ -34,8 +39,13 @@ public class Compra {
     public Compra(BigDecimal valorItem, Integer quantidade, String formaPagamento, Produto produto, Usuario comprador) {
         this.valorItem = valorItem;
         this.quantidade = quantidade;
+        this.status = Status.INICIADA;
         this.formaPagamento = formaPagamento;
         this.produto = produto;
         this.comprador = comprador;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
