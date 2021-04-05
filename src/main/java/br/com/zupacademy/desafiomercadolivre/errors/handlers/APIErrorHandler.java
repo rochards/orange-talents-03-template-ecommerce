@@ -19,6 +19,12 @@ public class APIErrorHandler {
         setErrors(fieldErrors);
     }
 
+    public APIErrorHandler(List<FieldError> fieldErrors, HttpStatus httpStatus) {
+        this.timestamp = OffsetDateTime.now();
+        this.status = httpStatus.value();
+        setErrors(fieldErrors);
+    }
+
     private void setErrors(List<FieldError> fieldErrors) {
         this.errors = fieldErrors.stream()
                 .map(error -> new ErrorField(error.getField(), error.getDefaultMessage()))
