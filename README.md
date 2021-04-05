@@ -8,6 +8,7 @@
 - ImagemProduto;
 - Opiniao;
 - Pergunta;
+- Compra; 
 
 ### Funcionalidades do sistema
 - Cadastro de usuário;
@@ -18,6 +19,7 @@
 - Adição de opinião ao produto;
 - Adição de pergunta sobre o produto;
 - Consulta de produtos;
+- Realização de compra;
 
 ### Operações
 - POST /usuarios;
@@ -28,3 +30,4 @@
 - POST /produtos/{id}/opinioes
 - POST /produtos/{id}/perguntas
 - GET /produtos/{id}
+- POST /compras

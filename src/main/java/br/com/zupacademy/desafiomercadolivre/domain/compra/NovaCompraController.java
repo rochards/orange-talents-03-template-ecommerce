@@ -48,7 +48,9 @@ public class NovaCompraController {
         em.merge(produto);
 
         String urlToRedirect = compra.enviaRegistroCompraParaGatewayPagamento();
-        System.out.println(urlToRedirect);
+        System.out.println("Registro no gateway de pagamento: " + urlToRedirect);
+
+        System.out.println("Enviando e-mail para: " + produto.getDono().getLogin());
 
 //        response.sendRedirect(urlToRedirect); deixei comentado para nao ficar retorando 404
 
