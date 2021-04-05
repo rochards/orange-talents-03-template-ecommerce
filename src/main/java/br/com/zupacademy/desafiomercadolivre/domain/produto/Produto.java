@@ -94,6 +94,15 @@ public class Produto {
         return this.dono.equals(possivelDono);
     }
 
+    public boolean abateEstoque(Integer quantidade) {
+        if (this.quantidade >= quantidade) {
+            this.quantidade -= quantidade;
+            return true;
+        }
+
+        return false;
+    }
+
     public Usuario getDono() {
         return dono;
     }

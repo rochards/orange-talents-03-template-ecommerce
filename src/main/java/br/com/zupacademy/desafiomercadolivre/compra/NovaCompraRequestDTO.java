@@ -34,15 +34,6 @@ public class NovaCompraRequestDTO {
         return quantidade;
     }
 
-    @Override
-    public String toString() {
-        return "NovaCompraRequestDTO{" +
-                "produtoId=" + produtoId +
-                ", quantidade=" + quantidade +
-                ", formaPagamento='" + formaPagamento + '\'' +
-                '}';
-    }
-
     public Compra toModel(Produto produto, Usuario comprador) {
         return new Compra(produto.getValor(), quantidade,formaPagamento, produto, comprador);
     }
