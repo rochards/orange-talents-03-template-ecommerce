@@ -1,6 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.errors.validators;
 
-import br.com.zupacademy.desafiomercadolivre.compra.NovaCompraRequestDTO;
+import br.com.zupacademy.desafiomercadolivre.domain.compra.NovaCompraRequestDTO;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

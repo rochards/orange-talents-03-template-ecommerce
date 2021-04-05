@@ -1,4 +1,4 @@
-package br.com.zupacademy.desafiomercadolivre.compra;
+package br.com.zupacademy.desafiomercadolivre.domain.compra;
 
 import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
