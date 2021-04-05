@@ -10,6 +10,7 @@ import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -94,7 +95,9 @@ public class Produto {
         return this.dono.equals(possivelDono);
     }
 
-    public boolean abateEstoque(Integer quantidade) {
+    public boolean abateEstoque(@Positive Integer quantidade) {
+        Assert.isTrue(quantidade > 0, "a quantidade deve ser maior que zero");
+
         if (this.quantidade >= quantidade) {
             this.quantidade -= quantidade;
             return true;
