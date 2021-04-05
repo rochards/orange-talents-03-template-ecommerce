@@ -1,5 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.compra;
 
+import br.com.zupacademy.desafiomercadolivre.domain.compra.pagamento.FormaPagamento;
+import br.com.zupacademy.desafiomercadolivre.domain.compra.pagamento.GatewayPagamento;
 import br.com.zupacademy.desafiomercadolivre.domain.compra.status.Status;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
@@ -24,7 +26,8 @@ public class Compra {
     private Status status;
 
     @Column(nullable = false)
-    private String formaPagamento;
+    @Enumerated(EnumType.STRING)
+    private FormaPagamento formaPagamento;
 
     @ManyToOne(optional = false)
     private Produto produto;
@@ -36,7 +39,7 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(BigDecimal valorItem, Integer quantidade, String formaPagamento, Produto produto, Usuario comprador) {
+    public Compra(BigDecimal valorItem, Integer quantidade, FormaPagamento formaPagamento, Produto produto, Usuario comprador) {
         this.valorItem = valorItem;
         this.quantidade = quantidade;
         this.status = Status.INICIADA;
@@ -47,5 +50,10 @@ public class Compra {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String enviaRegistroCompraParaGatewayPagamento() {
+        return this.formaPagamento.getGatewayPagamento().enviaRegistroDeCompra(id, "https://localhost/api" +
+                "/recebe_conta_paga");
     }
 }

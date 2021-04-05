@@ -1,5 +1,7 @@
 package br.com.zupacademy.desafiomercadolivre.domain.compra;
 
+import br.com.zupacademy.desafiomercadolivre.domain.compra.pagamento.FormaPagamento;
+import br.com.zupacademy.desafiomercadolivre.domain.compra.pagamento.GatewayPagamento;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
@@ -17,10 +19,12 @@ public class NovaCompraRequestDTO {
     @NotNull @Positive
     private Integer quantidade;
 
-    @NotBlank
-    private String formaPagamento;
+    @NotNull
+    private FormaPagamento formaPagamento;
 
-    public NovaCompraRequestDTO(Integer produtoId, Integer quantidade, String formaPagamento) {
+    public NovaCompraRequestDTO(@NotNull Integer produtoId, @NotNull @Positive Integer quantidade,
+        @NotBlank FormaPagamento formaPagamento) {
+
         this.produtoId = produtoId;
         this.quantidade = quantidade;
         this.formaPagamento = formaPagamento;
@@ -35,6 +39,6 @@ public class NovaCompraRequestDTO {
     }
 
     public Compra toModel(Produto produto, Usuario comprador) {
-        return new Compra(produto.getValor(), quantidade,formaPagamento, produto, comprador);
+        return new Compra(produto.getValor(), quantidade, formaPagamento, produto, comprador);
     }
 }

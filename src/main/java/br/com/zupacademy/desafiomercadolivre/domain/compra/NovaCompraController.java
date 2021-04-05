@@ -45,6 +45,8 @@ public class NovaCompraController {
         em.persist(compra);
         em.merge(produto);
 
+        System.out.println(compra.enviaRegistroCompraParaGatewayPagamento());
+
         return ResponseEntity.ok().build();
     }
 }
