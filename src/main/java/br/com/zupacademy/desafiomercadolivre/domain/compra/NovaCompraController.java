@@ -11,8 +11,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("compras")
@@ -32,7 +34,7 @@ public class NovaCompraController {
     @PostMapping
     @Transactional
     public ResponseEntity<?> efetua(@RequestBody @Valid NovaCompraRequestDTO compraRequest, BindingResult result,
-        @AuthenticationPrincipal Usuario comprador) {
+        @AuthenticationPrincipal Usuario comprador, HttpServletResponse response) throws IOException {
 
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().body(new APIErrorHandler(result.getFieldErrors()));
@@ -45,7 +47,10 @@ public class NovaCompraController {
         em.persist(compra);
         em.merge(produto);
 
-        System.out.println(compra.enviaRegistroCompraParaGatewayPagamento());
+        String urlToRedirect = compra.enviaRegistroCompraParaGatewayPagamento();
+        System.out.println(urlToRedirect);
+
+//        response.sendRedirect(urlToRedirect); deixei comentado para nao ficar retorando 404
 
         return ResponseEntity.ok().build();
     }
