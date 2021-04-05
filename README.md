@@ -26,8 +26,8 @@
 - POST /categorias;
 - POST /auth;
 - POST /produtos;
-- POST /produtos/{id}/imagens
-- POST /produtos/{id}/opinioes
-- POST /produtos/{id}/perguntas
-- GET /produtos/{id}
-- POST /compras
+- POST /produtos/{id}/imagens;
+- POST /produtos/{id}/opinioes;
+- POST /produtos/{id}/perguntas;
+- GET /produtos/{id};
+- POST /compras;
