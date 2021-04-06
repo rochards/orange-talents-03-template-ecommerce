@@ -1,4 +1,4 @@
-package br.com.zupacademy.desafiomercadolivre.domain.compra.pagamento;
+package br.com.zupacademy.desafiomercadolivre.domain.pagamento.tipos;
 
 public interface GatewayPagamento {
 

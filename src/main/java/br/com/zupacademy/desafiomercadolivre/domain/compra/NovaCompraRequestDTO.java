@@ -1,7 +1,6 @@
 package br.com.zupacademy.desafiomercadolivre.domain.compra;
 
-import br.com.zupacademy.desafiomercadolivre.domain.compra.pagamento.FormaPagamento;
-import br.com.zupacademy.desafiomercadolivre.domain.compra.pagamento.GatewayPagamento;
+import br.com.zupacademy.desafiomercadolivre.domain.pagamento.tipos.FormaPagamento;
 import br.com.zupacademy.desafiomercadolivre.domain.produto.Produto;
 import br.com.zupacademy.desafiomercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
