@@ -35,4 +35,8 @@ public class Pagamento {
         this.status = status;
         this.registradoEm = OffsetDateTime.now();
     }
+
+    public Status getStatus() {
+        return status;
+    }
 }
