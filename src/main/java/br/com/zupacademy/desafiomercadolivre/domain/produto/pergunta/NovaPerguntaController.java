@@ -47,7 +47,8 @@ public class NovaPerguntaController {
 
         em.persist(pergunta);
 
-        emailSender.envia(pergunta, produto.getDono());
+        emailSender.envia(produto.getDono().getLogin(), interessado.getLogin(),"Pergunta sobre o produto "
+                + produto.getNome(), pergunta.getTitulo());
 
         return ResponseEntity.ok().build();
     }
