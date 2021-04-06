@@ -8,7 +8,8 @@
 - ImagemProduto;
 - Opiniao;
 - Pergunta;
-- Compra; 
+- Compra;
+- Pagamento;
 
 ### Funcionalidades do sistema
 - Cadastro de usuário;
@@ -20,6 +21,9 @@
 - Adição de pergunta sobre o produto;
 - Consulta de produtos;
 - Realização de compra;
+- Processa pagamentos;
+- Integração com sistema de notas fiscais;
+- Integração com sistema de ranking de vendedores;
 
 ### Operações
 - POST /usuarios;
@@ -31,3 +35,6 @@
 - POST /produtos/{id}/perguntas;
 - GET /produtos/{id};
 - POST /compras;
+- POST /pagamentos;
+- POST /notas_fiscais;
+- POST /ranking_vendedores;
