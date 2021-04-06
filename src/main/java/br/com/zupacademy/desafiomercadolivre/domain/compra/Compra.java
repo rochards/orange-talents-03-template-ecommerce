@@ -47,6 +47,18 @@ public class Compra {
         this.comprador = comprador;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getCompradorId() {
+        return comprador.getId();
+    }
+
+    public Integer getVendedorId() {
+        return produto.getDono().getId();
+    }
+
     public void finalizaCompra() {
         this.status = Status.FINALIZADA;
     }

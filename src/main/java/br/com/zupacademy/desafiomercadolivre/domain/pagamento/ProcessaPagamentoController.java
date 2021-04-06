@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -43,6 +44,19 @@ public class ProcessaPagamentoController {
             compra.finalizaCompra();
 
             em.merge(compra);
+
+
+            var restTemplate = new RestTemplate();
+
+            String notasFiscaisURL = String.format("http://localhost:8080/notas_fiscais?compraId=%d" +
+                    "&compradorId=%d", compra.getId(), compra.getCompradorId());
+            String retornoNotasFiscais = restTemplate.postForObject(notasFiscaisURL, null, String.class);
+            System.out.println(retornoNotasFiscais);
+
+            String rankingVendedoresURL = String.format("http://localhost:8080/ranking_vendedores?compraId=%d" +
+                    "&vendedorId=%d", compra.getId(), compra.getVendedorId());
+            String retornorankingVendedores = restTemplate.postForObject(rankingVendedoresURL, null, String.class);
+            System.out.println(retornorankingVendedores);
         }
 
         var pagamento = pagamentoRequest.toModel(em);
