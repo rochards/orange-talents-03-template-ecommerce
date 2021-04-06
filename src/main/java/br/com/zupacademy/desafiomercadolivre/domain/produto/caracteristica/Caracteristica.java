@@ -39,6 +39,14 @@ public class Caracteristica {
     }
 
     @Override
+    public String toString() {
+        return "Caracteristica{" +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Caracteristica)) return false;

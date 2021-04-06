@@ -59,11 +59,25 @@ public class Compra {
         return produto.getDono().getId();
     }
 
+    public String getLoginComprador() {
+        return comprador.getLogin();
+    }
+
     public void finalizaCompra() {
         this.status = Status.FINALIZADA;
     }
 
     public String enviaRegistroCompraParaGatewayPagamento() {
         return this.formaPagamento.getGatewayPagamento().enviaRegistroDeCompra(id, "http://localhost:8080/pagamentos");
+    }
+
+    @Override
+    public String toString() {
+        return "Compra {" +
+                "valorItem=" + valorItem +
+                ", quantidade=" + quantidade +
+                ", formaPagamento=" + formaPagamento +
+                ", produto={" + produto.getNome() + ", " + produto.getCaracteristicas() + " }" +
+                '}';
     }
 }
