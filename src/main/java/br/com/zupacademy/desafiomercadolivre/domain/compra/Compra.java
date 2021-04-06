@@ -47,12 +47,11 @@ public class Compra {
         this.comprador = comprador;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void finalizaCompra() {
+        this.status = Status.FINALIZADA;
     }
 
     public String enviaRegistroCompraParaGatewayPagamento() {
-        return this.formaPagamento.getGatewayPagamento().enviaRegistroDeCompra(id, "https://localhost/api" +
-                "/recebe_conta_paga");
+        return this.formaPagamento.getGatewayPagamento().enviaRegistroDeCompra(id, "http://localhost:8080/pagamentos");
     }
 }
