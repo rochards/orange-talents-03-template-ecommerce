@@ -33,6 +33,9 @@ public class ProcessaPagamentoController {
         binder.addValidators(pagamentoValidator);
     }
 
+    /* Nesse controller eu consigo atender tanto as requisicoes do PagSeguro quanto do PayPal. A questao eh que eles
+     retornam o status do pagamento de forma diferente: PagSeguro retorna SUCESSO e ERRO; PayPal retorna 1 e 0. Como
+     minha classe ProcessaPagamentoRequestDTO define um enum para o parametro em questao, isso fica resolvido. */
     @PostMapping
     @Transactional
     public ResponseEntity<?> processa(@RequestBody @Valid ProcessaPagamentoRequestDTO pagamentoRequest,
@@ -68,7 +71,7 @@ public class ProcessaPagamentoController {
                     "pagamento", "Tente novamente em " + compra.enviaRegistroCompraParaGatewayPagamento());
         }
 
-        var pagamento = pagamentoRequest.toModel(em);
+        var pagamento = pagamentoRequest.toModel(compra);
 
         em.persist(pagamento);
 

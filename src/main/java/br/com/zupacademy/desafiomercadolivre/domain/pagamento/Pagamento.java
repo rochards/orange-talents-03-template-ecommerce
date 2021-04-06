@@ -15,8 +15,8 @@ public class Pagamento {
     @ManyToOne(optional = false)
     private Compra compra;
 
-    @Column(nullable = false)
-    private String pagamentoId;
+    @Column(nullable = false, unique = true)
+    private String transacaoId;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
@@ -29,9 +29,9 @@ public class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(Compra compra, String pagamentoId, Status status) {
+    public Pagamento(Compra compra, String transacaoId, Status status) {
         this.compra = compra;
-        this.pagamentoId = pagamentoId;
+        this.transacaoId = transacaoId;
         this.status = status;
         this.registradoEm = OffsetDateTime.now();
     }

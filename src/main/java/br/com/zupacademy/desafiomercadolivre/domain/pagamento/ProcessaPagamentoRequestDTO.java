@@ -3,8 +3,8 @@ package br.com.zupacademy.desafiomercadolivre.domain.pagamento;
 import br.com.zupacademy.desafiomercadolivre.domain.compra.Compra;
 import br.com.zupacademy.desafiomercadolivre.domain.pagamento.status.Status;
 import br.com.zupacademy.desafiomercadolivre.errors.validators.ExistsValue;
+import br.com.zupacademy.desafiomercadolivre.errors.validators.UniqueValue;
 
-import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -15,21 +15,21 @@ public class ProcessaPagamentoRequestDTO {
     private Integer compraId;
 
     @NotBlank
-    private String pagamentoId;
+    @UniqueValue(message = "já existe uma transação processada com esse id", domainClass = Pagamento.class,
+            fieldName = "transacaoId")
+    private String transacaoId;
 
     @NotNull
     private Status status;
 
-    public ProcessaPagamentoRequestDTO(@NotNull Integer compraId, @NotBlank String pagamentoId, @NotNull Status status) {
+    public ProcessaPagamentoRequestDTO(@NotNull Integer compraId, @NotBlank String transacaoId, @NotNull Status status) {
         this.compraId = compraId;
-        this.pagamentoId = pagamentoId;
+        this.transacaoId = transacaoId;
         this.status = status;
     }
 
-    public Pagamento toModel(EntityManager em) {
-        // Eh esperado que compraId exista no banco, pois ja foi feita uma validacao acima
-        var compra = em.find(Compra.class, compraId);
-        return new Pagamento(compra, pagamentoId, status);
+    public Pagamento toModel(Compra compra) {
+        return new Pagamento(compra, transacaoId, status);
     }
 
     public Integer getCompraId() {
