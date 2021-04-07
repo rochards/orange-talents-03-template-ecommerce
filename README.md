@@ -121,8 +121,65 @@ Na classe de configuração do Spring Security apenas os endpoints /auth e /usua
       ]
     }
     ```
+### Produto
+#### Informações a serem cadastradas
+- nome;
+- valor;
+- quantidade disponível;
+- características:
+  - nome;
+  - descrição. 
+- descrição;
+- um produto pertence a uma categoria;
+- instante de cadastro.
+#### Restrições do cadastro
+- nomes de produto e categoria são obrigatórios;
+- valor/preço é obrigatório e deve ser >= 0;
+- produto tem no mínimo três categorias;
+- descrições de produto e categoria têm no máximo 1000 caracteres.
+#### Cadastro
+- POST http://localhost:8080/produtos
+- Corpo da requisição:
+  ```yaml
+  {
+    "nome": "Exemplo produto",
+    "valor": "7200.00",
+    "quantidade": 700,
+    "descricao": "Um produto de exemplo",
+    "categoriaId": 1,
+    "caracteristicas": [
+      {
+        "nome": "caracteristica 1",
+        "descricao": "descricao 1"
+      },
+      {
+        "nome": "caracteristica 2",
+        "descricao": "descricao 2"
+      },
+      {
+        "nome": "caracteristica 3",
+        "descricao": "descricao 3"
+      }
+    ]
+  }
+  ```
+#### Respostas do API
+- Status 200 como resposta de sucesso;
+- Status 400 em falha de validação e JSON:
+  - Ex.:
+    ```yaml
+    {
+      "timestamp": "2021-04-07T10:38:45.4393226-03:00",
+      "status": 400,
+      "errors": [
+        {
+          "field": "caracteristicas",
+          "message": ""tamanho deve ser entre 3 e 2147483647"
+        }
+      ]
+    }
+    ```
 ### Entidades do sistema
-- Produto;
 - CaracteristicaProduto;
 - ImagemProduto;
 - Opiniao;
