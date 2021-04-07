@@ -2,7 +2,7 @@
 
 Esse desafio faz parte do programa de formação [Orange Talents](https://www.zup.com.br/orange-talents/) da [Zup](https://www.zup.com.br/).
 
-### O que foi preciso para desenvolver esse projeto
+## O que foi preciso para desenvolver esse projeto
 - Java 11;
 - [Spring Boot 2.4.4](https://spring.io/projects/spring-boot);
 - MySQL 8.
@@ -440,8 +440,6 @@ Caso o pagamento venha com status de erro, deve-se:
       ]
     }
     ```
-### Diagrama de entidade e relacionamento
-![Diagrama do bd mercado_livre](images/EER-mercado_livre.svg "DER do bd mercado_livre")
 ### Resumo das funcionalidades da API
 - Cadastro de usuário;
 - Cadastro de categoria;
@@ -469,3 +467,6 @@ Caso o pagamento venha com status de erro, deve-se:
 - POST /pagamentos;
 - POST /notas_fiscais;
 - POST /ranking_vendedores;
+
+## Diagrama de entidade e relacionamento
+![Diagrama do bd mercado_livre](images/EER-mercado_livre.svg "DER do bd mercado_livre")
