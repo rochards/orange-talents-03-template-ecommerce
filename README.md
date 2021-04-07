@@ -1,6 +1,6 @@
 # Desafio Mercado Livre
 
-Esse desafio faz parte do programa de formação [Orange Talents](https://www.zup.com.br/orange-talents/) da [Zup](https://www.zup.com.br/).
+Esse desafio faz parte do programa de formação [Orange Talents](https://www.zup.com.br/orange-talents/) da [Zup](https://www.zup.com.br/). O objetivo aqui é desenvolver uma REST API que implementa algumas funcionalidades do Mercado Livre.
 
 ### O que foi preciso para desenvolver esse projeto
 - Java 11;
