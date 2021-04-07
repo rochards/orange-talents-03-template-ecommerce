@@ -2,14 +2,32 @@
 
 Esse desafio faz parte do programa de formação [Orange Talents](https://www.zup.com.br/orange-talents/) da [Zup](https://www.zup.com.br/).
 
-## O que foi preciso para desenvolver esse projeto
+### O que foi preciso para desenvolver esse projeto
 - Java 11;
 - [Spring Boot 2.4.4](https://spring.io/projects/spring-boot);
 - MySQL 8.
 - [Java JWT](https://github.com/jwtk/jjwt);
 - [Postman](https://www.postman.com/);
 
-## Entidades e funcionalidades do sistema
+### Tabela de conteúdos
+- [Entidades e funcionalidades da API](#entidades-e-funcionalidades-da-API)
+  - [Usuário](#usuario)
+  - [Categoria](#categoria)
+  - [Autenticação de usuário](#autenticacao-de-usuario)
+  - [Produto](#produto)
+  - [Imagem do Produto](#imagem-do-produto)
+  - [Opinião sobre o Produto](#opiniao-sobre-o-produto)
+  - [Pergunta sobre o Produto](#pergunta-sobre-o-produto)
+  - [Detalhamento de Produto](#detalhamento-de-produto)
+  - [Compra](#compra)
+  - [Pagamento](#pagamento)
+  - [Resumo das funcionalidades da API](#resumo-das-funcionalidades-da-api)
+  - [Resumo das operações](#resumo-das-operacoes)
+- [Diagrama de entidade e relacionamento](#diagrama-de-entidade-e-relacionamento) 
+
+<a name="entidades-e-funcionalidades-da-API"></a>
+## Entidades e funcionalidades da API
+<a name="usuario"></a>
 ### Usuário
 #### Informações a serem cadastradas
 - login;
@@ -53,6 +71,7 @@ Esse desafio faz parte do programa de formação [Orange Talents](https://www.zu
       ]
     }
     ```
+<a name="categoria"></a>
 ### Categoria
 No mercado livre você pode criar hierarquias de categorias livres. Ex: Tecnologia -> Celulares -> Smartphones ->
 #### Informações a serem cadastradas
@@ -85,6 +104,7 @@ No mercado livre você pode criar hierarquias de categorias livres. Ex: Tecnolog
       ]
     }
     ```
+<a name="autenticacao-de-usuario"></a>
 ### Autenticação de usuário
 Nessa etapa configura-se um mecanismo de autenticação via token com o Spring Security e a biblioteca JJWT.  
 Na classe de configuração do Spring Security apenas os endpoints /auth e /usuarios estão liberados para acesso sem autenticação. Os demais exigem que um usuário esteja autenticado.
@@ -120,6 +140,7 @@ Na classe de configuração do Spring Security apenas os endpoints /auth e /usua
       ]
     }
     ```
+<a name="produto"></a>
 ### Produto
 #### Informações a serem cadastradas
 - nome;
@@ -178,6 +199,7 @@ Na classe de configuração do Spring Security apenas os endpoints /auth e /usua
       ]
     }
     ```
+<a name="imagem-do-produto"></a>
 ### Imagem do Produto
 Um usuário (fazendo papel de vendedor) pode adicionar imagens ao seu produto.  
 Nesse caso a imagem não precisa ser de fato salva em alguma cloud.
@@ -204,6 +226,7 @@ Nesse caso a imagem não precisa ser de fato salva em alguma cloud.
       ]
     }
     ```
+<a name="opiniao-sobre-o-produto"></a>
 ### Opinião sobre o Produto
 #### Informações a serem cadastradas
 - nota;
@@ -243,6 +266,7 @@ Nesse caso a imagem não precisa ser de fato salva em alguma cloud.
       ]
     }
     ```
+<a name="pergunta-sobre-o-produto"></a>
 ### Pergunta sobre o Produto
 Um usuário pode fazer uma pergunta sobre um produto. O vendedor/usuário daquele produto deve receber um e-mail 
 informando que há uma pergunta para o produto que ele está vendendo.  
@@ -280,7 +304,8 @@ O e-mail não precisa ser enviado de verdade, apenas um *print* no console já �
       ]
     }
     ```
-### Detalhamento dos produtos
+<a name="detalhamento-de-produto"></a>
+### Detalhamento de Produto
 O front precisa montar uma página com a maior número de informações possíveis sobre o produto.
 #### Informações a serem retornadas
 - links para as imagens;
@@ -338,6 +363,7 @@ O front precisa montar uma página com a maior número de informações possíve
       ]
     }
     ```
+<a name="compra"></a>
 ### Compra
 Será simulado a integração com um gateway de pagamento, sendo nesse caso o PayPal e o PagSeguro. O fluxo 
 geralmente se resume a:
@@ -388,6 +414,7 @@ Um email é enviado para a pessoa que é dona(o) do produto informando que um us
       ]
     }
     ```
+<a name="pagamento"></a>
 ### Pagamento
 Aqui estamos simulando o gateway fazendo chamadas para a API para registrar pagamentos.  
 O gateway pode retornar um pagamento com status de erro e sucesso. O PayPal retorna 1 para sucesso e 0 para erro. O 
@@ -440,6 +467,7 @@ Caso o pagamento venha com status de erro, deve-se:
       ]
     }
     ```
+<a name="resumo-das-funcionalidades-da-api"></a>
 ### Resumo das funcionalidades da API
 - Cadastro de usuário;
 - Cadastro de categoria;
@@ -453,7 +481,7 @@ Caso o pagamento venha com status de erro, deve-se:
 - Processamento de pagamentos;
 - Integração com sistema de notas fiscais;
 - Integração com sistema de ranking de vendedores;
-
+<a name="resumo-das-operacoes"></a>
 ### Resumo das operações
 - POST /usuarios;
 - POST /categorias;
@@ -468,5 +496,6 @@ Caso o pagamento venha com status de erro, deve-se:
 - POST /notas_fiscais;
 - POST /ranking_vendedores;
 
+<a name="diagrama-de-entidade-e-relacionamento"></a>
 ## Diagrama de entidade e relacionamento
 ![Diagrama do bd mercado_livre](images/EER-mercado_livre.svg "DER do bd mercado_livre")
