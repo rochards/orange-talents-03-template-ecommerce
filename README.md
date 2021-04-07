@@ -9,6 +9,9 @@ Esse desafio faz parte do programa de formação [Orange Talents](https://www.zu
 
 ## Entidades do sistema
 ### Usuário
+#### Informações a serem cadastradas
+- login;
+- senha;
 #### Restrições do cadastro
 - O login não poder ser em branco e precisa ser um e-mail;
 - O login precisa ser único no sistema;
@@ -24,7 +27,7 @@ Esse desafio faz parte do programa de formação [Orange Talents](https://www.zu
     "senha": "exemplo123"
   }
   ```
-#### Resposta do API
+#### Respostas do API
 - Status 200 como resposta de sucesso e JSON;
   - Ex.:
     ```yaml
@@ -48,9 +51,39 @@ Esse desafio faz parte do programa de formação [Orange Talents](https://www.zu
       ]
     }
     ```
-
+### Categoria
+No mercado livre você pode criar hierarquias de categorias livres. Ex: Tecnologia -> Celulares -> Smartphones ->
+#### Informações a serem cadastradas
+- nome;
+- possível categoria mãe (não é obrigatório).
+#### Restrições do cadastro
+- o nome da categoria é obrigatório e precisa ser único.
+#### Cadastro
+- POST http://localhost:8080/categorias
+- Corpo da requisicao:
+  ```yaml
+  {
+    "nome": "Celulares",
+    "categoriaMaeId": 1
+  }
+  ```
+#### Respostas do API
+- Status 200 como resposta de sucesso;
+- Status 400 em falha de validação e JSON:
+  - Ex.:
+    ```yaml
+    {
+      "timestamp": "2021-04-07T10:38:45.4393226-03:00",
+      "status": 400,
+      "errors": [
+        {
+            "field": "nome",
+            "message": "esse nome já está cadastrado"
+        }
+      ]
+    }
+    ```
 ### Entidades do sistema
-- Categoria;
 - Produto;
 - CaracteristicaProduto;
 - ImagemProduto;
