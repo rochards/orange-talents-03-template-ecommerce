@@ -30,7 +30,7 @@ Esse desafio faz parte do programa de formação [Orange Talents](https://www.zu
     "senha": "exemplo123"
   }
   ```
-#### Respostas do API
+#### Respostas da API
 - Status 200 como resposta de sucesso e JSON;
   - Ex.:
     ```yaml
@@ -70,7 +70,7 @@ No mercado livre você pode criar hierarquias de categorias livres. Ex: Tecnolog
     "categoriaMaeId": 1
   }
   ```
-#### Respostas do API
+#### Respostas da API
 - Status 200 como resposta de sucesso;
 - Status 400 em falha de validação e JSON:
   - Ex.:
@@ -98,7 +98,7 @@ Na classe de configuração do Spring Security apenas os endpoints /auth e /usua
     "senha": "123456"
   }
   ```
-#### Respostas do API
+#### Respostas da API
 - Status 200 como resposta de sucesso e JSON:
   - Ex.:
     ```yaml
@@ -163,7 +163,7 @@ Na classe de configuração do Spring Security apenas os endpoints /auth e /usua
     ]
   }
   ```
-#### Respostas do API
+#### Respostas da API
 - Status 200 como resposta de sucesso;
 - Status 400 em falha de validação e JSON:
   - Ex.:
