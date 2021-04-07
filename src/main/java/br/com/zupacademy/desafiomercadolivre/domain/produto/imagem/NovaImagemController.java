@@ -53,7 +53,7 @@ public class NovaImagemController {
         }
         if (!produto.pertenceAUsuario(usuario)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new APIErrorHandler(List.of(new FieldError(
-                    "Produto", "id", String.format("usuário não é dono de 'produto/%d'", id))))
+                    "Produto", "id", String.format("usuário não é dono de 'produto/%d'", id))), HttpStatus.FORBIDDEN)
             );
         }
 
