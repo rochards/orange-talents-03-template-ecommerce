@@ -4,8 +4,11 @@ Esse desafio faz parte do programa de formação [Orange Talents](https://www.zu
 
 ### O que foi preciso para desenvolver esse projeto
 - Java 11;
-- Spring framework na versão 2.4.4;
+- Spring Framework:
+  - [Spring Boot 2.4.4](https://spring.io/projects/spring-boot);
+  - [Spring Security 5.4.5](https://spring.io/projects/spring-security);
 - MySQL 8.
+- [Java JWT](https://github.com/jwtk/jjwt);
 
 ## Entidades do sistema
 ### Usuário
@@ -79,6 +82,41 @@ No mercado livre você pode criar hierarquias de categorias livres. Ex: Tecnolog
         {
             "field": "nome",
             "message": "esse nome já está cadastrado"
+        }
+      ]
+    }
+    ```
+### Autenticação de usuário
+Nessa etapa configura-se um mecanismo de autenticação via token com o Spring Security e a biblioteca JJWT.  
+Na classe de configuração do Spring Security apenas os endpoints /auth e /usuarios estão liberados para acesso sem autenticação. Os demais exigem que um usuário esteja autenticado.
+#### Autenticação
+- POST http://localhost:8080/auth
+- Corpo da requisicao:
+  ```yaml
+  {
+    "login": "exemplo@email.com.br",
+    "senha": "123456"
+  }
+  ```
+#### Respostas do API
+- Status 200 como resposta de sucesso e JSON:
+  - Ex.:
+    ```yaml
+    {
+      "tipo": "Bearer",
+      "toke": ""eyJhbGciOiJIUzUxMiJ9. ... -NKfwLYgQ"
+    }
+    ```
+- Status 400 em falha de validação e JSON:
+  - Ex.:
+    ```yaml
+    {
+      "timestamp": "2021-04-07T10:38:45.4393226-03:00",
+      "status": 400,
+      "errors": [
+        {
+             "field": "login",
+             "message": "não há usuário cadastrado com o e-mail informado"
         }
       ]
     }
