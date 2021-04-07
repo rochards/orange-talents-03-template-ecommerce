@@ -48,8 +48,8 @@ Esse desafio faz parte do programa de formação [Orange Talents](https://www.zu
       "status": 400,
       "errors": [
         {
-            "field": "login",
-            "message": "não deve estar em branco"
+          "field": "login",
+          "message": "não deve estar em branco"
         }
       ]
     }
@@ -80,8 +80,8 @@ No mercado livre você pode criar hierarquias de categorias livres. Ex: Tecnolog
       "status": 400,
       "errors": [
         {
-            "field": "nome",
-            "message": "esse nome já está cadastrado"
+          "field": "nome",
+          "message": "esse nome já está cadastrado"
         }
       ]
     }
@@ -115,8 +115,8 @@ Na classe de configuração do Spring Security apenas os endpoints /auth e /usua
       "status": 400,
       "errors": [
         {
-             "field": "login",
-             "message": "não há usuário cadastrado com o e-mail informado"
+          "field": "login",
+          "message": "não há usuário cadastrado com o e-mail informado"
         }
       ]
     }
