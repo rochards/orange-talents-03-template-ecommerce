@@ -14,6 +14,6 @@ public class RankingVendedoresController {
     public String atualizaRanking(@RequestParam("compraId") Integer compraId,
         @RequestParam("vendedorId") Integer vendedorId) {
 
-        return String.format("Nota venda gerada para: comprador %d da compra %d", vendedorId, compraId);
+        return String.format("Nova venda gerada para: vendedor %d da compra %d", vendedorId, compraId);
     }
 }
